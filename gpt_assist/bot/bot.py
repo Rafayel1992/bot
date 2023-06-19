@@ -1,8 +1,9 @@
 import telebot
+from gpt_assist.инструменти import configure
 from telebot import types
 
 
-bot = telebot.TeleBot("6216739188:AAGI1LRLGG_CSeqCHgdGaq8lYkZr31omDTY")
+bot = telebot.TeleBot(configure.config['token'])
 
 
 
