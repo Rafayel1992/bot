@@ -1,22 +1,50 @@
-import telegram
-from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
+import telebot
+from telebot import types
+
+bot = telebot.TeleBot("6216739188:AAGI1LRLGG_CSeqCHgdGaq8lYkZr31omDTY")
 
 
-bot_token = '6216739188:AAGI1LRLGG_CSeqCHgdGaq8lYkZr31omDTY'
-bot = telegram.Bot(token=bot_token)
-updater = Updater(token=bot_token, use_context=True)
+@bot.message_handler(commands=['start'])
+def handle_start(message):
+    keyboard = types.ReplyKeyboardMarkup(row_width=2)
 
-def start(update, context):
-    context.bot.send_message(chat_id=update.effective_chat.id, text="Привет! Я бот.")
+    button1 = types.KeyboardButton('.Վարձակալել բնակարան\n', '\n.Снять квартиру', '\n.To rent an apartment')
+    button2 = types.KeyboardButton('.Ամրագրեք\n', '\n.Зарезервировать\n', '\n.Make a reservation')
+    button3 = types.KeyboardButton('.Զամբյուղn\n', '\n.Корзина', '\n.Cart')
+    button4 = types.KeyboardButton('Հետ\n', "\nНазад", '\nBack')
 
-def echo(update, context):
-    context.bot.send_message(chat_id=update.effective_chat.id, text=update.message.text)
+    keyboard.add(button1, button2, button3, button4)
 
-start_handler = CommandHandler('start', start)
-echo_handler = MessageHandler(Filters.text & (~Filters.command), echo)
+    bot.reply_to(message, "Привет! Я бот. 👋 "
+                          "\n👍.Այստեղ դուկ կարողեք վարձակալել բնակարան"
+                          "\n👍.Գնել  բնակարան"
+                          "\n👍.Ինչպես նաև վարձակալել օրավարձով:\n"
+                          "\n👍.Здесь можно снять квартиру."
+                          "\n👍.Купить квартиру."
+                          "\n👍.A так же аренда посуточно.\n"
+                          '\n👍.Here you can rent an apartment.'
+                          "\n👍.Buy an apartment as well as daily",
+                 reply_markup=keyboard)
 
-dispatcher = updater.dispatcher
-dispatcher.add_handler(start_handler)
-dispatcher.add_handler(echo_handler)
 
-updater.start_polling()
+@bot.message_handler(func=lambda message: message.text == "Кнопка 1")
+def handle_button1(message):
+    bot.reply_to(message, "Вы нажали на Кнопку 1")
+
+
+@bot.message_handler(func=lambda message: message.text == "Кнопка 2")
+def handle_button2(message):
+    bot.reply_to(message, "Вы нажали на Кнопку 2")
+
+
+@bot.message_handler(func=lambda message: message.text == "Кнопка 3")
+def handle_button3(message):
+    bot.reply_to(message, "Вы нажали на Кнопку 3")
+
+
+@bot.message_handler(func=lambda message: message.text == "Кнопка 4")
+def handle_button4(message):
+    bot.reply_to(message, "Вы нажали на Кнопку 4")
+
+
+bot.polling()
