@@ -9,7 +9,7 @@ bot = telebot.TeleBot("6216739188:AAGI1LRLGG_CSeqCHgdGaq8lYkZr31omDTY")
 @bot.message_handler(commands=['start'])
 def handle_start(message):
 
-    keyboard = types.ReplyKeyboardMarkup(row_width=2)
+    keyboard = types.ReplyKeyboardMarkup(row_width=3)
 
 
     button1 = types.KeyboardButton("'.Վարձակալել բնակարան''\n.Снять квартиру''\n.To rent an apartment'")
