@@ -1,7 +1,7 @@
 import telebot
 from gpt_assist.инструменти import configure
 from telebot import types
-
+from gpt_assist.инструменти import inline
 
 bot = telebot.TeleBot(configure.config['token'])
 
@@ -10,16 +10,14 @@ bot = telebot.TeleBot(configure.config['token'])
 @bot.message_handler(commands=['start'])
 def handle_start(message):
 
-    keyboard = types.ReplyKeyboardMarkup(row_width=3)
+    keyboard = types.ReplyKeyboardMarkup(row_width=2)
 
 
-    button1 = types.KeyboardButton("'.Վարձակալել բնակարան''\n.Снять квартиру''\n.To rent an apartment'")
-    button2 = types.KeyboardButton('.Ամրագրեք''\n.Зарезервировать\n''\n.Make a reservation')
-    button3 = types.KeyboardButton('.Զամբյուղ''\n.Корзина''\n.Cart')
-    button4 = types.KeyboardButton( 'Հետ'"\nНазад"'\nBack')
+    button1 = types.KeyboardButton("Снять квартиру")
+    button2 = types.KeyboardButton('Аренда посуточно')
 
 
-    keyboard.add(button1, button2, button3,button4)
+    keyboard.add(button1, button2)
 
 
     bot.reply_to(message, "Привет! Я бот. "
@@ -33,24 +31,50 @@ def handle_start(message):
                                                                     "\n.Buy an apartment as well as daily", reply_markup=keyboard)
 
 
-@bot.message_handler(func=lambda message: message.text == "Кнопка 1")
+@bot.message_handler(func=lambda message: message.text == "Снять квартиру")
 def handle_button1(message):
-    bot.reply_to(message, "Вы нажали на Кнопку 1")
+
+    keyboard = types.InlineKeyboardMarkup()
+
+    button1 = types.InlineKeyboardButton("Кнопка 1", callback_data='button1')
+    button2 = types.InlineKeyboardButton("Кнопка 2", callback_data='button2')
+    button3 = types.InlineKeyboardButton("Кнопка 3", callback_data='button3')
+
+    keyboard.add(button1, button2, button3)
+    bot.reply_to(message, "Привет! Выберите одну из кнопок:", reply_markup=keyboard)
+
+@bot.callback_query_handler(func=lambda call: True)
+def handle_inline_buttons(call):
+        if call.data == 'button1':
+            bot.send_message(call.message.chat.id, "Вы нажали на Кнопку 1")
+        elif call.data == 'button2':
+            bot.send_message(call.message.chat.id, "Вы нажали на Кнопку 2")
+        elif call.data == 'button3':
+            bot.send_message(call.message.chat.id, "Вы нажали на Кнопку 3")
 
 
-@bot.message_handler(func=lambda message: message.text == "Кнопка 2")
+@bot.message_handler(func=lambda message: message.text == "Аренда посуточно")
 def handle_button2(message):
-    bot.reply_to(message, "Вы нажали на Кнопку 2")
 
 
+    key_board = types.InlineKeyboardMarkup()
 
-@bot.message_handler(func=lambda message: message.text == "Кнопка 3")
-def handle_button3(message):
-    bot.reply_to(message, "Вы нажали на Кнопку 3")
+    button1 = types.InlineKeyboardButton("Кнопка 1", callback_data='button1')
+    button2 = types.InlineKeyboardButton("Кнопка 2", callback_data='button2')
+    button3 = types.InlineKeyboardButton("Кнопка 3", callback_data='button3')
 
-@bot.message_handler(func=lambda message: message.text == "Кнопка 4")
-def handle_button4(message):
-    bot.reply_to(message, "Вы нажали на Кнопку 4")
+    key_board.add(button1, button2, button3)
+    bot.reply_to(message, "Привет! Выберите одну из кнопок:", reply_markup=key_board)
+
+
+@bot.callback_query_handler(func=lambda call: True)
+def handle_inline_buttons(call):
+    if call.data == 'button1':
+        bot.send_message(call.message.chat.id, "Вы нажали на Кнопку 1")
+    elif call.data == 'button2':
+        bot.send_message(call.message.chat.id, "Вы нажали на Кнопку 2")
+    elif call.data == 'button3':
+        bot.send_message(call.message.chat.id, "Вы нажали на Кнопку 3")
 
 
 bot.polling()
