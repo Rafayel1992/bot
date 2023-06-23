@@ -92,8 +92,8 @@ def goodsChapter(message):
 
 def settingsChapter(message):
     markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
-    button1 = types.KeyboardButton('⚙️ Настройки #1')
-    button2 = types.KeyboardButton('⚙️ Настройки #2')
+    button1 = types.KeyboardButton('🔹 Настройки #1')
+    button2 = types.KeyboardButton('🔹 Настройки #2')
     button3 = types.KeyboardButton('↩️ Назад в меню')
     markup.row(button1, button2)
     markup.row(button3)
