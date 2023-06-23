@@ -61,8 +61,27 @@ def info(message):
         button1 = types.KeyboardButton('💳 Купить')
         button2 = types.KeyboardButton('↩️ Назад')
         markup.row(button1, button2)
+        bot.send_message(message.chat.id, 'Информация о третьем товаре...', reply_markup=markup)
+    elif message.text == '🔹 Товар #5':
+        markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
+        button1 = types.KeyboardButton('💳 Купить')
+        button2 = types.KeyboardButton('↩️ Назад')
+        markup.row(button1, button2)
+        bot.send_message(message.chat.id, 'Информация о третьем товаре...', reply_markup=markup)
+    elif message.text == '🔹 Товар #6':
+        markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
+        button1 = types.KeyboardButton('💳 Купить')
+        button2 = types.KeyboardButton('↩️ Назад')
+        markup.row(button1, button2)
+        bot.send_message(message.chat.id, 'Информация о третьем товаре...', reply_markup=markup)
+    elif message.text == '🔹 Товар #7':
+        markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
+        button1 = types.KeyboardButton('💳 Купить')
+        button2 = types.KeyboardButton('↩️ Назад')
+        markup.row(button1, button2)
+        bot.send_message(message.chat.id, 'Информация о третьем товаре...', reply_markup=markup)
 
-    elif message.text == '💳 Купить' or message.text == '✏️ Написать разработчику':
+    elif message.text == '💳 Купить' :
 
         webbrowser.open('https://t.me/Rafo1212')
     elif message.text == '↩️ Назад':
@@ -81,10 +100,14 @@ def goodsChapter(message):
     button2 = types.KeyboardButton('🔹 Товар #2')
     button3 = types.KeyboardButton('🔹 Товар #3')
     button4 = types.KeyboardButton('🔹 Товар #4')
-    button5 = types.KeyboardButton('↩️ Назад в меню')
+    button5 = types.KeyboardButton('🔹 Товар #5')
+    button6 = types.KeyboardButton('🔹 Товар #6')
+    button7 = types.KeyboardButton('🔹 Товар #7')
+    button8 = types.KeyboardButton('↩️ Назад в меню')
     markup.row(button1, button2)
     markup.row(button3, button4)
-    markup.row(button5)
+    markup.row(button5,button6)
+    markup.row(button7,button8)
 
 
     bot.send_message(message.chat.id, 'Вот все товары, которые сейчас находятся в продаже:', reply_markup=markup)
@@ -92,12 +115,13 @@ def goodsChapter(message):
 
 def settingsChapter(message):
     markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
-    button1 = types.KeyboardButton('⚙️ Настройки #1')
-    button2 = types.KeyboardButton('⚙️ Настройки #2')
-    button3 = types.KeyboardButton('↩️ Назад в меню')
+    button1 = types.KeyboardButton('🔹 Товар #1')
+    button2 = types.KeyboardButton('🔹 Товар #2')
+    button3= types.KeyboardButton('🔹 Товар #3')
+    button4 = types.KeyboardButton('↩️ Назад в меню')
     markup.row(button1, button2)
-    markup.row(button3)
-    bot.send_message(message.chat.id, 'Раздел настроек.\nВыбери один из вариантов:', reply_markup=markup)
+    markup.row(button3,button4)
+    bot.send_message(message.chat.id, 'Вот все товары, которые сейчас находятся в продаже:', reply_markup=markup)
 
 
 bot.polling(none_stop=True)
