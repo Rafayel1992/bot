@@ -17,8 +17,8 @@ def welcome(message):
     button2 = types.KeyboardButton('🏠  Аренда посуточно')
 
 
-    markup.row(button1,button2)
-   
+    markup.row(button1)
+    markup.row(button2)
 
     if message.text == '/start':
 
@@ -62,7 +62,7 @@ def info(message):
         button2 = types.KeyboardButton('↩️ Назад')
         markup.row(button1, button2)
 
-    elif message.text == '💳 Купить' :
+    elif message.text == '💳 Купить' or message.text == '✏️ Написать разработчику':
 
         webbrowser.open('https://t.me/Rafo1212')
     elif message.text == '↩️ Назад':
@@ -92,8 +92,8 @@ def goodsChapter(message):
 
 def settingsChapter(message):
     markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
-    button1 = types.KeyboardButton('🔹 Настройки #1')
-    button2 = types.KeyboardButton('🔹 Настройки #2')
+    button1 = types.KeyboardButton('⚙️ Настройки #1')
+    button2 = types.KeyboardButton('⚙️ Настройки #2')
     button3 = types.KeyboardButton('↩️ Назад в меню')
     markup.row(button1, button2)
     markup.row(button3)
