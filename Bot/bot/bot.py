@@ -17,8 +17,8 @@ def welcome(message):
     button2 = types.KeyboardButton('🏠  Аренда посуточно')
 
 
-    markup.row(button1)
-    markup.row(button2)
+    markup.row(button1,button2)
+   
 
     if message.text == '/start':
 
