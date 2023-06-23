@@ -1,14 +1,14 @@
 import telebot
-from gpt_assist.инструменти import configure
+from Bot.инструменти import configure
 from telebot import types
-from gpt_assist.инструменти import inline
+
 
 bot = telebot.TeleBot(configure.config['token'])
 
 
 @bot.message_handler(commands=['start'])
 def handle_start(message):
-    keyboard = types.ReplyKeyboardMarkup(row_width=2)
+    keyboard = types.ReplyKeyboardMarkup(row_width=1)
 
     button1 = types.KeyboardButton("Снять квартиру")
     button2 = types.KeyboardButton('Аренда посуточно')
@@ -29,7 +29,7 @@ def handle_start(message):
 
 @bot.message_handler(func=lambda message: message.text == "Снять квартиру")
 def handle_button1(message):
-    keyboard = types.InlineKeyboardMarkup()
+    keyboard = types.InlineKeyboardMarkup(row_width=1)
 
     button1 = types.InlineKeyboardButton("Кнопка 1", callback_data='button1')
     button2 = types.InlineKeyboardButton("Кнопка 2", callback_data='button2')
@@ -51,7 +51,7 @@ def handle_inline_buttons(call):
 
 @bot.message_handler(func=lambda message: message.text == "Аренда посуточно")
 def handle_button2(message):
-    key_board = types.InlineKeyboardMarkup()
+    key_board = types.InlineKeyboardMarkup(row_width=1)
 
     button1 = types.InlineKeyboardButton("Кнопка 1", callback_data='button1')
     button2 = types.InlineKeyboardButton("Кнопка 2", callback_data='button2')
