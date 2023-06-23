@@ -62,7 +62,7 @@ def info(message):
         button2 = types.KeyboardButton('↩️ Назад')
         markup.row(button1, button2)
 
-    elif message.text == '💳 Купить' or message.text == '✏️ Написать разработчику':
+    elif message.text == '💳 Купить' :
 
         webbrowser.open('https://t.me/Rafo1212')
     elif message.text == '↩️ Назад':
